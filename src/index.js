@@ -8,7 +8,15 @@ dotenv.config({
     path : './env'
 })
 
-connectDB();
+connectDB()
+.then(() => {
+    app.listen(process.env.PORT || 8000 , () =>{
+        console.log(`server create at ${process.env.PORT}`)
+    })
+})
+.catch((error) =>{
+    console.log("mongo bd connection failed" , error)
+})
 /*
 ;( async() => {
     try {
